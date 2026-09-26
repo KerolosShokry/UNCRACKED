@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uncracked — Cloud Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- استدعاء مكتبة Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--primary:#38bdf8;--primary-dark:#0284c7;--bg:#070a12;--card:#0f172a;--muted:#94a3b8;--danger:#f87171;--success:#34d399}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Montserrat,sans-serif;background:var(--bg);color:#fff;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,rgba(14,165,233,.22),transparent 55%)}
+header{position:sticky;top:0;z-index:5;background:rgba(7,10,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);padding:18px 5%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:3px}.logo span{color:var(--primary)}
+header a{color:#fff;text-decoration:none;padding:10px 15px;border:1px solid rgba(255,255,255,.1);border-radius:10px}
+main{width:min(1200px,90%);margin:40px auto 80px}
+h1{font-size:2rem;margin-bottom:8px}.subtitle{color:var(--muted);margin-bottom:30px}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{background:rgba(15,23,42,.82);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:25px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
+.card h2{font-size:1.1rem;margin-bottom:20px}
+label{display:block;font-size:.82rem;color:var(--muted);margin:14px 0 7px}
+input,select,textarea{width:100%;background:#080d18;color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--primary)}
+textarea{min-height:95px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+button{border:0;border-radius:10px;padding:11px 16px;font:700 .85rem Montserrat;cursor:pointer;transition:0.2s}
+button:disabled{opacity:0.6;cursor:not-allowed}
+.primary{background:linear-gradient(135deg,#38bdf8,#0284c7);color:#071018}
+.secondary{background:#172033;color:#fff;border:1px solid rgba(255,255,255,.1)}
+.danger{background:rgba(248,113,113,.12);color:#fca5a5;border:1px solid rgba(248,113,113,.25)}
+.drop{border:1px dashed rgba(56,189,248,.45);border-radius:14px;padding:20px;text-align:center;background:rgba(56,189,248,.05);cursor:pointer}
+.drop input{display:none}.drop i{font-size:30px;color:var(--primary);margin-bottom:8px}.drop p{color:var(--muted);font-size:.8rem}
+.preview{width:90px;height:90px;border-radius:16px;object-fit:contain;background:#080d18;border:1px solid rgba(255,255,255,.1);margin:15px auto;display:block}
+.list{display:grid;gap:12px;max-height:600px;overflow:auto}
+.item{display:flex;gap:13px;align-items:center;padding:13px;border-radius:13px;background:#0a101d;border:1px solid rgba(255,255,255,.06)}
+.item img{width:52px;height:52px;object-fit:contain;border-radius:10px;background:#111827}
+.item-info{min-width:0;flex:1}.item-info strong{display:block}.item-info small{color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{text-align:center;color:var(--muted);padding:35px}
+.notice{display:none;margin-bottom:20px;padding:12px 15px;border-radius:10px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#86efac}
+.notice.error{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:#fca5a5}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">UN<span>CRACKED</span> <small style="font-weight:400;letter-spacing:1px;color:#64748b">CLOUD ADMIN</small></div>
+  <a href="index.html"><i class="fas fa-arrow-left"></i> View Website</a>
+</header>
+
+<main>
+  <h1>Cloud Dashboard</h1>
+  <p class="subtitle">Data is securely stored in Supabase Database and Storage.</p>
+  <div id="notice" class="notice"></div>
+
+  <div class="layout">
+    <section class="card">
+      <h2><i class="fas fa-cloud-upload-alt"></i> Add Software</h2>
+      <form id="softwareForm">
+        <label>Software name *</label>
+        <input id="name" required placeholder="e.g. VLC Media Player">
+
+        <div class="row">
+          <div>
+            <label>Category *</label>
+            <select id="category">
+              <option value="design">Design & 3D</option>
+              <option value="office">Office & Productivity</option>
+              <option value="media">Media & Audio</option>
+              <option value="tools">System & Security</option>
+            </select>
+          </div>
+          <div>
+            <label>License</label>
+            <input id="license" value="Open Source">
+          </div>
+        </div>
+
+        <label>Replaces</label>
+        <input id="replaces" placeholder="e.g. Windows Media Player">
+
+        <label>Description</label>
+        <textarea id="description" placeholder="Short description..."></textarea>
+
+        <label>Official website / download URL *</label>
+        <input id="url" type="url" required placeholder="https://example.com/download">
+
+        <label>Software image (Optional)</label>
+        <label class="drop" for="image">
+          <i class="fas fa-image"></i>
+          <div>Choose an image</div>
+          <p>Will be uploaded to Supabase Storage automatically.</p>
+          <input id="image" type="file" accept="image/*,.svg">
+        </label>
+        <img id="preview" class="preview" alt="Preview" style="display:none">
+
+        <div class="actions">
+          <button class="primary" type="submit" id="submitBtn"><i class="fas fa-plus"></i> Save to Cloud</button>
+          <button class="secondary" type="button" id="clearForm">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2><i class="fas fa-database"></i> Cloud Database</h2>
+      <div id="list" class="list">
+          <div class="empty">Loading cloud data...</div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+// إعدادات Supabase مدمجة وجاهزة
+const SUPABASE_URL = 'https://cggacjyzrfzmnjgryquu.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_aM43JHTUKWU-lkIdWT22eg_fg4fIB_L';
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const form = document.getElementById('softwareForm');
+const image = document.getElementById('image');
+const preview = document.getElementById('preview');
+const list = document.getElementById('list');
+const notice = document.getElementById('notice');
+const submitBtn = document.getElementById('submitBtn');
+
+function showNotice(text, isError = false){
+  notice.textContent = text; 
+  notice.style.display = 'block';
+  notice.className = isError ? 'notice error' : 'notice';
+  clearTimeout(window.noticeTimer);
+  window.noticeTimer = setTimeout(()=> notice.style.display='none', 4000);
+}
+
+function escapeHtml(s){
+  return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+
+function fallback(name){
+  const l = (name||'?').trim().charAt(0).toUpperCase()||'?';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><rect width="96" height="96" rx="18" fill="#0f172a"/><rect x="3" y="3" width="90" height="90" rx="15" fill="none" stroke="#38bdf8" stroke-width="3"/><text x="48" y="59" text-anchor="middle" font-family="Arial" font-size="42" font-weight="700" fill="white">${l}</text></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+
+async function loadData() {
+    try {
+        const { data, error } = await supabaseClient.from('software').select('*').order('created_at', { ascending: false });
+        if (error) throw error;
+        if(!data.length){
+            list.innerHTML='<div class="empty"><i class="fas fa-box-open" style="font-size:35px;margin-bottom:10px"></i><br>Database is empty.</div>';
+            return;
+        }
+        list.innerHTML = data.map(x => `
+            <div class="item">
+                <img src="${x.logo || fallback(x.name)}" onerror="this.onerror=null;this.src='${fallback(x.name)}'" alt="">
+                <div class="item-info">
+                    <strong>${escapeHtml(x.name)}</strong>
+                    <small>${escapeHtml(x.category)} · Cloud</small>
+                </div>
+                <button class="danger" onclick="removeItem(${x.id})" title="Delete"><i class="fas fa-trash"></i></button>
+            </div>`).join('');
+    } catch (error) {
+        showNotice(error.message, true);
+    }
+}
+
+window.removeItem = async function(id) {
+    if(!confirm("Delete this software from cloud?")) return;
+    try {
+        const { error } = await supabaseClient.from('software').delete().eq('id', id);
+        if (error) throw error;
+        showNotice('Software deleted successfully.');
+        loadData();
+    } catch (error) {
+        showNotice(error.message, true);
+    }
+};
+
+image.addEventListener('change', () => {
+  const file = image.files[0];
+  if(!file){preview.style.display='none';return}
+  const reader = new FileReader();
+  reader.onload = e => {preview.src=e.target.result; preview.style.display='block'};
+  reader.readAsDataURL(file);
+});
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+  try {
+      const file = image.files[0];
+      let logoUrl = '';
+
+      if (file) {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+          const { error: uploadError } = await supabaseClient.storage.from('software-icons').upload(fileName, file);
+          if (uploadError) throw uploadError;
+          const { data: publicUrlData } = supabaseClient.storage.from('software-icons').getPublicUrl(fileName);
+          logoUrl = publicUrlData.publicUrl;
+      }
+
+      const newSoftware = {
+          name: document.getElementById('name').value.trim(),
+          category: document.getElementById('category').value,
+          license: document.getElementById('license').value.trim() || 'Open Source',
+          replaces: document.getElementById('replaces').value.trim() || '—',
+          description: document.getElementById('description').value.trim() || 'No description available.',
+          url: document.getElementById('url').value.trim(),
+          platforms: ['fab fa-windows', 'fab fa-apple', 'fab fa-linux'],
+          logo: logoUrl
+      };
+
+      const { error: insertError } = await supabaseClient.from('software').insert([newSoftware]);
+      if (insertError) throw insertError;
+
+      form.reset(); 
+      preview.style.display='none'; 
+      showNotice('Added to Cloud Successfully!');
+      loadData();
+  } catch (err) {
+      showNotice(err.message, true);
+  } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-plus"></i> Save to Cloud';
+  }
+});
+
+document.getElementById('clearForm').onclick = () => {form.reset(); preview.style.display='none'};
+
+loadData();
+</script>
+</body>
+</html>

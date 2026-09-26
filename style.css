@@ -1,0 +1,765 @@
+/* ========================================
+   LOCAL VARSITY FONT (LOCAL PATH)
+   ======================================== */
+@font-face {
+    font-family: 'Varsity';
+    src: url('./Assets/Fonts/varsity_regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ========================================
+   CSS VARIABLES - MODERN DEEP TECH THEME
+   ======================================== */
+:root {
+    --primary: #38bdf8;
+    --primary-dark: #0284c7;
+    --secondary: #0ea5e9;
+    --accent: #38bdf8;
+    --accent-purple: #6366f1;
+
+    --dark-bg: #070a12;
+    --dark-card: rgba(15, 23, 42, 0.75);
+    --darker-card: #0b1120;
+    --light-bg: #1e293b;
+
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --danger: #f87171;
+
+    --gradient-primary: linear-gradient(135deg, #38bdf8, #0284c7);
+    --gradient-accent: linear-gradient(135deg, #0ea5e9, #6366f1);
+    --glass-bg: rgba(15, 23, 42, 0.75);
+    --glass-border: rgba(56, 189, 248, 0.15);
+}
+
+/* ========================================
+   GLOBAL STYLES & RESETS
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif !important;
+    background: #070a12;
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.25) 0%, transparent 60%),
+        radial-gradient(circle at 85% 20%, rgba(2, 132, 199, 0.15) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #070a12;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.4);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+::selection {
+    background: var(--primary);
+    color: #070a12;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 5%;
+    background: rgba(7, 10, 18, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    padding: 12px 5%;
+    background: rgba(7, 10, 18, 0.95) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 4px 0;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #070a12;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+/* 1. اسم الموقع في الهيدر فقط بخط Varsity */
+.logo-text {
+    font-family: 'Varsity', sans-serif !important;
+    font-size: 28px !important;
+    letter-spacing: 3px !important;
+    font-weight: normal !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    line-height: 1;
+    display: inline-block;
+}
+
+.logo-subtext {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 6px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif !important;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 13.5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.15);
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.cta-button {
+    font-family: 'Montserrat', sans-serif !important;
+    padding: 10px 22px;
+    background: var(--gradient-primary);
+    color: #070a12;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.small-hero {
+    padding: 90px 5% 35px;
+    text-align: center;
+    position: relative;
+}
+
+.small-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.small-hero-badge {
+    font-family: 'Montserrat', sans-serif !important;
+    display: inline-block;
+    padding: 8px 22px;
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--primary);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50px;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 0.8px;
+}
+
+/* 2. اسم الموقع في نص الصفحة فقط بخط Varsity */
+.small-hero h1 {
+    font-family: 'Varsity', sans-serif !important;
+    font-size: 3.5rem !important;
+    letter-spacing: 4px !important;
+    font-weight: normal !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+    text-transform: uppercase;
+    line-height: 1.2 !important;
+    margin-bottom: 20px !important;
+    display: block;
+}
+
+.small-hero p {
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* ========================================
+   SEARCH & FILTER
+   ======================================== */
+.search-filter-section {
+    max-width: 860px;
+    margin: 35px auto 10px;
+    padding: 0 15px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(56, 189, 248, 0.22) !important;
+    border-radius: 16px;
+    padding: 12px 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+.search-box i {
+    color: var(--primary);
+    font-size: 18px;
+    margin-right: 12px;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    font-family: 'Montserrat', sans-serif !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 9px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--gradient-primary) !important;
+    color: #070a12 !important;
+    border-color: transparent !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(56, 189, 248, 0.25);
+}
+
+/* ========================================
+   SOFTWARE CATALOG CARDS (خط عادي طبيعي)
+   ======================================== */
+.products-section {
+    padding: 35px 5% 80px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-header h2 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 2.1rem !important;
+    font-weight: 800 !important;
+    color: #ffffff;
+    line-height: 1.3 !important;
+    margin-bottom: 10px !important;
+}
+
+.section-header p {
+    font-family: 'Montserrat', sans-serif !important;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: rgba(15, 23, 42, 0.7) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15) !important;
+}
+
+.product-top {
+    padding: 25px 25px 15px;
+    position: relative;
+}
+
+.badge-alt-to {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--primary);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.software-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.software-icon {
+    width: 54px;
+    height: 54px;
+    background: rgba(15, 23, 42, 0.9) !important;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+    border: 1px solid rgba(56, 189, 248, 0.25) !important;
+}
+
+.software-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.software-meta h3 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.license-tag {
+    font-size: 11px;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--success);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.software-description {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.replaces-box {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.replaces-box strong {
+    color: var(--danger);
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
+.product-bottom {
+    padding: 15px 25px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.platforms {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.btn-download {
+    font-family: 'Montserrat', sans-serif !important;
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 10px;
+    color: #070a12;
+    font-weight: 800;
+    font-size: 13.5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+}
+
+/* ========================================
+   WHY AVOID CRACKS SECTION
+   ======================================== */
+.why-section {
+    padding: 80px 5%;
+    background: rgba(11, 17, 32, 0.8) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.why-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 45px auto 0;
+}
+
+.why-card {
+    background: rgba(15, 23, 42, 0.7) !important;
+    backdrop-filter: blur(10px);
+    padding: 35px 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    transition: transform 0.3s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+.why-card i {
+    font-size: 38px;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.why-card h4 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.why-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ========================================
+   FLOATING BUTTONS
+   ======================================== */
+.floating-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.floating-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.floating-btn.telegram { background: #0088cc; }
+.floating-btn.discord { background: #111827; border: 1px solid rgba(255, 255, 255, 0.15); }
+.floating-btn:hover { transform: translateY(-4px) scale(1.08); }
+
+/* ========================================
+   FOOTER (خط عادي طبيعي)
+   ======================================== */
+.footer {
+    background: #04060a !important;
+    padding: 70px 5% 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    margin-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto 50px;
+}
+
+.footer-column h3 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 45px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.footer-column p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.social-grid {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.social-card {
+    background: rgba(15, 23, 42, 0.8);
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.social-card:hover {
+    background: var(--primary);
+    color: #070a12;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.copyright {
+    color: var(--text-muted);
+    font-size: 13.5px;
+}
+
+.footer-legal a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13.5px;
+    margin-left: 15px;
+}
+
+.footer-legal a:hover {
+    color: var(--primary);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 992px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        background: rgba(11, 17, 32, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    body { padding-top: 85px; }
+    .header { padding: 15px 5%; }
+    .small-hero h1 { font-size: 2.3rem !important; letter-spacing: 2px !important; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+}

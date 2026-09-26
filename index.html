@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Uncracked - Break the habit, not the law. Discover powerful, legal, and open-source alternatives to cracked and pirated software.">
+    <title>Uncracked | Break the habit, not the law</title>
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header class="header" id="navbar">
+        <div class="logo-container">
+            <div class="logo-icon"><i class="fas fa-unlock-alt"></i></div>
+            <div>
+                <span class="logo-text">UNCRACKED</span>
+                <div class="logo-subtext">Break the habit, not the law</div>
+            </div>
+        </div>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+            <a href="#catalog" class="nav-link"><i class="fas fa-th-large"></i> Catalog</a>
+            <a href="#why-safe" class="nav-link"><i class="fas fa-shield-alt"></i> Why Avoid Cracks?</a>
+            <a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+        </nav>
+        <div class="header-actions">
+            <a href="#catalog" class="cta-button">
+                <i class="fas fa-compass"></i> Explore Alternatives
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="floating-buttons">
+        <a href="https://t.me" target="_blank" rel="noopener" class="floating-btn telegram" title="Join Telegram Channel">
+            <i class="fab fa-telegram-plane"></i>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="floating-btn discord" title="Open Source on GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+
+    <main id="home">
+        <section class="small-hero">
+            <div class="small-hero-content animate__animated animate__fadeIn">
+                <span class="small-hero-badge animate__animated animate__pulse animate__infinite">BREAK THE HABIT, NOT THE LAW</span>
+                <h1 class="animate__animated animate__fadeInUp">UNCRACKED</h1>
+                <p class="animate__animated animate__fadeInUp">Stop risking your machine with shady activators and malware. Explore verified, legal, and open-source software built for creators, developers, and power users.</p>
+            </div>
+            <div class="search-filter-section animate__animated animate__fadeInUp">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by software name or proprietary tool (e.g., Photoshop, Office, Premiere)...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="design">Design & 3D</button>
+                    <button class="filter-btn" data-category="office">Office & Productivity</button>
+                    <button class="filter-btn" data-category="media">Media & Audio</button>
+                    <button class="filter-btn" data-category="tools">System & Security</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section" id="catalog">
+            <div class="section-header">
+                <h2>Alternative Software Catalog</h2>
+                <p>Industry-standard applications trusted by millions of creators and developers worldwide</p>
+            </div>
+            <div id="software-container" class="products-grid">
+                <!-- Data loaded from Supabase via JS -->
+            </div>
+        </section>
+
+        <section class="why-section" id="why-safe">
+            <div class="section-header">
+                <h2>Why Choose Free Alternatives Over Cracks?</h2>
+                <p>The hidden risks behind pirated software</p>
+            </div>
+            <div class="why-cards">
+                <div class="why-card">
+                    <i class="fas fa-virus-slash"></i>
+                    <h4>Zero Malware & Ransomware</h4>
+                    <p>Over 80% of cracked software bundles hide crypto miners, infostealers, or rootkits that compromise your credentials.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-sync"></i>
+                    <h4>Consistent Official Updates</h4>
+                    <p>Open-source tools receive security patches and updates directly without broken activation keys or revoked licenses.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>100% Commercial Legality</h4>
+                    <p>Use these applications for commercial projects, freelancing, and businesses with zero licensing audit hazards.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h4>Thriving Global Communities</h4>
+                    <p>Backed by active developers and communities providing comprehensive tutorials, extensions, and documentation.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="about">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>UNCRACKED</h3>
+                <p>Break the habit, not the law. An open community initiative guiding users away from dangerous malware-ridden cracks toward verified free and open-source tools.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#catalog"><i class="fas fa-chevron-right"></i> Software Catalog</a></li>
+                    <li><a href="#why-safe"><i class="fas fa-chevron-right"></i> Why Avoid Piracy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Join & Share</h3>
+                <p>Help others keep their devices secure by sharing free and open-source alternatives.</p>
+                <div class="social-grid">
+                    <a href="https://t.me" target="_blank" class="social-card"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="social-card"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://github.com" target="_blank" class="social-card"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 Uncracked. Break the habit, not the law.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        // إعدادات Supabase
+        const SUPABASE_URL = 'https://cggacjyzrfzmnjgryquu.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_aM43JHTUKWU-lkIdWT22eg_fg4fIB_L'; 
+
+        let softwareList = [];
+        const container = document.getElementById('software-container');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        let activeCategory = 'all';
+
+        async function fetchSupabaseSoftware() {
+            if(container) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--primary);">
+                        <i class="fas fa-circle-notch fa-spin" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3>Loading Catalog from Cloud...</h3>
+                    </div>`;
+            }
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/software?select=*&order=created_at.desc`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                if(response.ok) {
+                    softwareList = await response.json();
+                }
+            } catch (error) {
+                console.error("Error connecting to Supabase:", error);
+            }
+            renderSoftware(softwareList);
+        }
+
+        function fallbackLogo(name) {
+            const letter = (name || '?').trim().charAt(0).toUpperCase();
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96">
+                    <rect width="96" height="96" rx="16" fill="#0f172a"/>
+                    <rect x="2" y="2" width="92" height="92" rx="14" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                    <text x="48" y="60" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="44" font-weight="700" fill="#38bdf8">${letter}</text>
+                </svg>
+            `)}`;
+        }
+
+        function renderSoftware(items) {
+            if (!container) return;
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-secondary);">
+                        <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; color: var(--text-muted);"></i>
+                        <h3>No software available yet</h3>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = items.map(item => {
+                let platformIcons = ['fab fa-windows'];
+                if (Array.isArray(item.platforms)) {
+                    platformIcons = item.platforms;
+                } else if (typeof item.platforms === 'string') {
+                    try { platformIcons = JSON.parse(item.platforms); } catch(e){}
+                }
+
+                return `
+                <div class="product-card animate__animated animate__fadeInUp">
+                    <div class="product-top">
+                        <div class="badge-alt-to">Verified Alternative</div>
+                        <div class="software-header">
+                            <div class="software-icon">
+                                <img src="${item.logo || fallbackLogo(item.name)}" 
+                                     alt="${item.name} logo" loading="lazy" 
+                                     onerror="this.onerror=null; this.src='${fallbackLogo(item.name)}';">
+                            </div>
+                            <div class="software-meta">
+                                <h3>${item.name}</h3>
+                                <span class="license-tag"><i class="fas fa-check-circle"></i> ${item.license || 'Open Source'}</span>
+                            </div>
+                        </div>
+                        <div class="replaces-box">
+                            Replaces: <strong>${item.replaces || '—'}</strong>
+                        </div>
+                        <p class="software-description">${item.description || ''}</p>
+                    </div>
+                    <div class="product-bottom">
+                        <div class="platforms">
+                            <span style="font-size: 11px; margin-right: 5px;">Platforms:</span>
+                            ${platformIcons.map(p => `<i class="${p}"></i>`).join(' ')}
+                        </div>
+                        <a href="${item.url || '#'}" target="_blank" rel="noopener noreferrer" class="btn-download">
+                            <i class="fas fa-external-link-alt"></i> Official Download
+                        </a>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        function filterData() {
+            const query = searchInput.value.trim().toLowerCase();
+            const filtered = softwareList.filter(item => {
+                const matchesCategory = (activeCategory === 'all' || item.category === activeCategory);
+                const matchesSearch = (item.name || '').toLowerCase().includes(query) || 
+                                      (item.replaces || '').toLowerCase().includes(query) || 
+                                      (item.description || '').toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+            renderSoftware(filtered);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeCategory = btn.getAttribute('data-category');
+                filterData();
+            });
+        });
+
+        if(searchInput) searchInput.addEventListener('input', filterData);
+
+        document.addEventListener('DOMContentLoaded', fetchSupabaseSoftware);
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 55, density: { enable: true, value_area: 800 } },
+                    color: { value: "#38bdf8" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.25, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 140, color: "#38bdf8", opacity: 0.12, width: 1 },
+                    move: { enable: true, speed: 1.4 }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
