@@ -763,3 +763,14 @@ body {
     .small-hero h1 { font-size: 2.3rem !important; letter-spacing: 2px !important; }
     .footer-bottom { flex-direction: column; text-align: center; }
 }
+
+/* حل مشكلة تداخل الأسماء الطويلة مع البادج */
+.software-meta h3 {
+    padding-right: 110px; /* بيعمل مسافة أمان للبادج عشان الكلام ميركبش عليه */
+    line-height: 1.4; /* بيحسن المسافة بين السطور لو الاسم نزل على سطرين */
+    word-wrap: break-word;
+}
+
+.software-header {
+    align-items: flex-start; /* بيخلي الأيقونة والاسم متوازيين من فوق لو الاسم طويل */
+}
