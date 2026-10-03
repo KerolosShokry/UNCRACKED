@@ -15,9 +15,19 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Montserrat,sans-serif;background:var(--bg);color:#fff;min-height:100vh}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,rgba(14,165,233,.22),transparent 55%)}
+
+/* إعدادات صفحة تسجيل الدخول */
+.login-wrapper { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 100; }
+.login-card { background: rgba(15,23,42,.9); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 40px; width: 90%; max-width: 400px; box-shadow: 0 15px 40px rgba(0,0,0,.5); text-align: center; }
+.login-card h2 { font-size: 1.5rem; margin-bottom: 5px; color: var(--primary); }
+.login-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 25px; }
+.login-card label { text-align: left; }
+.login-error { display: none; background: rgba(248,113,113,.1); color: #fca5a5; border: 1px solid rgba(248,113,113,.25); padding: 10px; border-radius: 10px; font-size: 0.85rem; margin-bottom: 15px; }
+#dashboardContent { display: none; }
+
 header{position:sticky;top:0;z-index:5;background:rgba(7,10,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);padding:18px 5%;display:flex;align-items:center;justify-content:space-between}
 .logo{font-weight:800;letter-spacing:3px}.logo span{color:var(--primary)}
-header a{color:#fff;text-decoration:none;padding:10px 15px;border:1px solid rgba(255,255,255,.1);border-radius:10px}
+header a{color:#fff;text-decoration:none;padding:10px 15px;border:1px solid rgba(255,255,255,.1);border-radius:10px; cursor:pointer;}
 main{width:min(1200px,90%);margin:40px auto 80px}
 h1{font-size:2rem;margin-bottom:8px}.subtitle{color:var(--muted);margin-bottom:30px}
 .layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -48,80 +58,148 @@ button:disabled{opacity:0.6;cursor:not-allowed}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">UN<span>CRACKED</span> <small style="font-weight:400;letter-spacing:1px;color:#64748b">CLOUD ADMIN</small></div>
-  <a href="index.html"><i class="fas fa-arrow-left"></i> View Website</a>
-</header>
 
-<main>
-  <h1>Cloud Dashboard</h1>
-  <p class="subtitle">Data is securely stored in Supabase Database and Storage.</p>
-  <div id="notice" class="notice"></div>
-
-  <div class="layout">
-    <section class="card">
-      <h2><i class="fas fa-cloud-upload-alt"></i> Add Software</h2>
-      <form id="softwareForm">
-        <label>Software name *</label>
-        <input id="name" required placeholder="e.g. VLC Media Player">
-
-        <div class="row">
-          <div>
-            <label>Category *</label>
-<select id="category">
-  <option value="design">Design & 3D</option>
-  <option value="office">Office & Productivity</option>
-  <option value="media">Media & Audio</option>
-  <option value="tools">System Apps</option>
-  <option value="security">Security & Antivirus</option>
-  <option value="os">Operating Systems</option>
-  <option value="development">Development</option>
-  <option value="internet">Internet & Network</option>
-  <option value="games">Games</option>
-</select>
-          </div>
-          <div>
-            <label>License</label>
-            <input id="license" value="Open Source">
-          </div>
-        </div>
-
-        <label>Replaces</label>
-        <input id="replaces" placeholder="e.g. Windows Media Player">
-
-        <label>Description</label>
-        <textarea id="description" placeholder="Short description..."></textarea>
-
-        <label>Official website / download URL *</label>
-        <input id="url" type="url" required placeholder="https://example.com/download">
-
-        <label>Software image (Optional)</label>
-        <label class="drop" for="image">
-          <i class="fas fa-image"></i>
-          <div>Choose an image</div>
-          <p>Will be uploaded to Supabase Storage automatically.</p>
-          <input id="image" type="file" accept="image/*,.svg">
-        </label>
-        <img id="preview" class="preview" alt="Preview" style="display:none">
-
-        <div class="actions">
-          <button class="primary" type="submit" id="submitBtn"><i class="fas fa-plus"></i> Save to Cloud</button>
-          <button class="secondary" type="button" id="clearForm">Clear</button>
-        </div>
-      </form>
-    </section>
-
-    <section class="card">
-      <h2><i class="fas fa-database"></i> Cloud Database</h2>
-      <div id="list" class="list">
-          <div class="empty">Loading cloud data...</div>
-      </div>
-    </section>
+<!-- صفحة تسجيل الدخول -->
+<div id="loginWrapper" class="login-wrapper">
+  <div class="login-card">
+    <div class="logo" style="margin-bottom: 20px;">OVER<span>DOSE</span></div>
+    <h2>Admin Login</h2>
+    <p>Please enter your credentials to access the cloud.</p>
+    
+    <div id="loginError" class="login-error">Invalid Email or Password!</div>
+    
+    <form id="loginForm">
+      <label>Email Address</label>
+      <input type="email" id="loginEmail" required placeholder="admin@overdose.com">
+      
+      <label>Password</label>
+      <input type="password" id="loginPassword" required placeholder="••••••••">
+      
+      <button type="submit" class="primary" style="width:100%; margin-top:25px; padding:14px;">
+        <i class="fas fa-sign-in-alt"></i> Secure Login
+      </button>
+    </form>
   </div>
-</main>
+</div>
+
+<!-- محتوى لوحة التحكم (مخفي افتراضياً) -->
+<div id="dashboardContent">
+  <header>
+    <div class="logo">UN<span>CRACKED</span> <small style="font-weight:400;letter-spacing:1px;color:#64748b">CLOUD ADMIN</small></div>
+    <div>
+      <a href="index.html" style="margin-right: 10px;"><i class="fas fa-arrow-left"></i> View Website</a>
+      <a id="logoutBtn" style="background: rgba(248,113,113,.1); color: #fca5a5; border-color: rgba(248,113,113,.25);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Cloud Dashboard</h1>
+    <p class="subtitle">Data is securely stored in Supabase Database and Storage.</p>
+    <div id="notice" class="notice"></div>
+
+    <div class="layout">
+      <section class="card">
+        <h2><i class="fas fa-cloud-upload-alt"></i> Add Software</h2>
+        <form id="softwareForm">
+          <label>Software name *</label>
+          <input id="name" required placeholder="e.g. VLC Media Player">
+
+          <div class="row">
+            <div>
+              <label>Category *</label>
+              <select id="category">
+                <option value="design">Design & 3D</option>
+                <option value="office">Office & Productivity</option>
+                <option value="media">Media & Audio</option>
+                <option value="tools">System Apps</option>
+                <option value="security">Security & Antivirus</option>
+                <option value="os">Operating Systems</option>
+                <option value="development">Development</option>
+                <option value="internet">Internet & Network</option>
+                <option value="games">Games</option>
+              </select>
+            </div>
+            <div>
+              <label>License</label>
+              <input id="license" value="Open Source">
+            </div>
+          </div>
+
+          <label>Replaces</label>
+          <input id="replaces" placeholder="e.g. Windows Media Player">
+
+          <label>Description</label>
+          <textarea id="description" placeholder="Short description..."></textarea>
+
+          <label>Official website / download URL *</label>
+          <input id="url" type="url" required placeholder="https://example.com/download">
+
+          <label>Software image (Optional)</label>
+          <label class="drop" for="image">
+            <i class="fas fa-image"></i>
+            <div>Choose an image</div>
+            <p>Will be uploaded to Supabase Storage automatically.</p>
+            <input id="image" type="file" accept="image/*,.svg">
+          </label>
+          <img id="preview" class="preview" alt="Preview" style="display:none">
+
+          <div class="actions">
+            <button class="primary" type="submit" id="submitBtn"><i class="fas fa-plus"></i> Save to Cloud</button>
+            <button class="secondary" type="button" id="clearForm">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2><i class="fas fa-database"></i> Cloud Database</h2>
+        <div id="list" class="list">
+            <div class="empty">Loading cloud data...</div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
 
 <script>
-// إعدادات Supabase مدمجة وجاهزة
+// ═══ AUTHENTICATION SYSTEM ═══
+const loginWrapper = document.getElementById('loginWrapper');
+const dashboardContent = document.getElementById('dashboardContent');
+const loginForm = document.getElementById('loginForm');
+const loginError = document.getElementById('loginError');
+const logoutBtn = document.getElementById('logoutBtn');
+
+// فحص حالة تسجيل الدخول السابقة
+if (sessionStorage.getItem('isAdminAuthed') === 'true') {
+    loginWrapper.style.display = 'none';
+    dashboardContent.style.display = 'block';
+    loadData(); // تحميل البيانات فقط إذا كان مسجلاً للدخول
+}
+
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const pass = document.getElementById('loginPassword').value;
+
+    if (email === 'admin@overdose.com' && pass === 'Overdose2026!') {
+        sessionStorage.setItem('isAdminAuthed', 'true');
+        loginWrapper.style.display = 'none';
+        dashboardContent.style.display = 'block';
+        loginError.style.display = 'none';
+        loadData(); // تحميل البيانات فور تسجيل الدخول
+    } else {
+        loginError.style.display = 'block';
+    }
+});
+
+logoutBtn.addEventListener('click', () => {
+    sessionStorage.removeItem('isAdminAuthed');
+    dashboardContent.style.display = 'none';
+    loginWrapper.style.display = 'flex';
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
+});
+
+// ═══ SUPABASE SYSTEM ═══
 const SUPABASE_URL = 'https://cggacjyzrfzmnjgryquu.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_aM43JHTUKWU-lkIdWT22eg_fg4fIB_L';
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -239,7 +317,7 @@ form.addEventListener('submit', async e => {
 
 document.getElementById('clearForm').onclick = () => {form.reset(); preview.style.display='none'};
 
-loadData();
+// تمت إزالة loadData() من هنا، وسيتم استدعاؤها فقط بعد تسجيل الدخول بنجاح.
 </script>
 </body>
 </html>
